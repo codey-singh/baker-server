@@ -1,8 +1,18 @@
 var express = require("express");
 var router = express.Router();
+var { connect } = require("../database/connection");
 
 router.get("/", (req, res) => {
-  res.render("products", { title: "Our delicacies" });
+  connect((client, db) => {
+    let collection = db.collection("products");
+    collection
+      .find({})
+      .toArray()
+      .then((products) => {
+        res.render("products", { title: "Our delicacies", products });
+        client.close();
+      });
+  });
 });
 
 module.exports = router;
