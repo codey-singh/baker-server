@@ -9,6 +9,9 @@ var usersRouter = require('./routes/users');
 var productsRouter = require('./routes/products');
 var aboutusRouter = require('./routes/aboutus');
 var faqsRouter = require('./routes/faqs');
+var contactusRouter = require('./routes/contactus');
+var registerRouter = require('./routes/register');
+var loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -24,8 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/products', productsRouter);
-app.use('/aboutus', aboutusRouter);
+app.use('/about', aboutusRouter);
 app.use('/faqs', faqsRouter);
+app.use('/contactus', contactusRouter);
+app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
