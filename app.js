@@ -10,6 +10,7 @@ var productsRouter = require("./routes/products");
 var aboutusRouter = require("./routes/aboutus");
 var faqsRouter = require("./routes/faqs");
 var contactusRouter = require("./routes/contactus");
+var cartRouter = require("./routes/cart");
 
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
@@ -50,6 +51,7 @@ app.use("/products", productsRouter);
 app.use("/about", aboutusRouter);
 app.use("/faqs", faqsRouter);
 app.use("/contactus", contactusRouter);
+app.use("/cart", cartRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
