@@ -190,7 +190,7 @@ img.slider-img {
 }
 
 body {
-  background: url(../img/bg.jpg) repeat-x;
+  background: url(../img/bg.jpeg) repeat-x;
   font-size: 1.2rem;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -587,6 +587,21 @@ address {
 address > a {
   color: white;
 }
+
+.mini-cart {
+  background-color: #852f3f;
+  border: 1px solid #a15462;
+  color: white;
+  width: 200px;
+  height: 35px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  padding: 5px;
+  position: fixed;
+  bottom: 0px;
+  right: 10px;
+}
+
 @media only screen and (min-width: 320px) {
   .grid3 {
     flex-direction: column;
