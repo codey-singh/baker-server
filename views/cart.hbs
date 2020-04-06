@@ -5,17 +5,33 @@
 </div>
 
 <main id="wrapper">
-  <div class="grid2">
-    <div>
-      <p>
-        Please write to us for any queries suggestions. These will help us
-        improving your online ordering experience
-      </p>
-
-
-    </div>
-    <div class="second">
-
+  <h2>Cart</h2>
+  <div class="grid2" style="min-height: 400px">
+    <div class="fill-available">
+      {{#if cart}}
+      <form action="/session">
+        <button type="submit" class="btn btn-outline-pink">Clear Cart</button>
+      </form>
+      <hr>
+      {{#each cart}}
+      <div id="div_{{this._id}}">
+        <h3>{{this.name}}</h3>
+        Quantity: <span id="qty_{{this._id}}">{{this.qty}}</span> [Max 10]<br><br>
+        <button class="btn btn-outline-pink" onclick="increase('{{this._id}}')"> Increase </button> | <button
+          class="btn btn-outline-pink" onclick="decrease('{{this._id}}')">Decrease</button> <br><br>
+        Price: {{this.price}}
+      </div>
+      <hr>
+      {{/each}}
+      <div>
+        <button class="btn btn-outline-pink" onclick="goTo('/checkout')">Checkout</button>
+      </div>
+      {{else}}
+      <div>
+        <p>No items in the cart</p>
+        <button class="btn btn-outline-pink" onclick="goTo('/products')">Continue Shopping</button>
+      </div>
+      {{/if}}
     </div>
   </div>
 </main>

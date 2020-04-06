@@ -293,6 +293,16 @@ blockquote {
   background-color: #faf8f8;
 }
 
+.grid2 > .fill-available {
+  width: -webkit-fill-available;
+  width: -moz-fill-available;
+  width: fill-available;
+}
+
+table.bordered {
+  border: 1px solid #333333;
+}
+
 .grid2 > div.second {
   display: none;
 }

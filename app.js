@@ -11,6 +11,8 @@ var aboutusRouter = require("./routes/aboutus");
 var faqsRouter = require("./routes/faqs");
 var contactusRouter = require("./routes/contactus");
 var cartRouter = require("./routes/cart");
+var sessionRouter = require("./routes/session");
+var checkoutRouter = require("./routes/checkout");
 
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
@@ -25,7 +27,6 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(
@@ -52,6 +53,9 @@ app.use("/about", aboutusRouter);
 app.use("/faqs", faqsRouter);
 app.use("/contactus", contactusRouter);
 app.use("/cart", cartRouter);
+app.use("/session", sessionRouter);
+app.use("/checkout", checkoutRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));

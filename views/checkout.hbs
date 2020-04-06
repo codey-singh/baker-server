@@ -1,0 +1,51 @@
+<div class="order">
+  <a href="#">
+    {{title}}
+  </a>
+</div>
+
+<main id="wrapper">
+  <div class="grid2" style="min-height: 400px">
+    <div class="fill-available">
+      {{#if cart}}
+      <table class="bordered" style="text-align: center;" width=500>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Sub Total</th>
+        </tr>
+        {{#each cart}}
+        <tr>
+          <td>{{this.name}}</td>
+          <td>${{this.price}}</td>
+          <td>{{this.qty}}</td>
+          <td>${{this.subtot}}</td>
+        </tr>
+        {{/each}}
+        <tfoot>
+          <tr>
+            <td colspan="4">
+              <hr>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="3">Grand Total</td>
+            <td>${{this.grandTotal}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <form action="/cart/buy" method="post" id="buy">
+        <br>
+        <button class="btn btn-outline-pink" type="submit">Pay and Proceed</button>
+      </form>
+      {{else}}
+
+      <p>There are no items to checkout</p>
+      <button class="btn btn-outline-pink" onclick="goTo('/products')">Continue Shopping</button>
+
+      {{/if}}
+    </div>
+  </div>
+  </div>
+</main>

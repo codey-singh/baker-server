@@ -19,7 +19,10 @@
       <p>
         {{this.desc}}
       </p>
-      <button class="btn btn-outline-pink" data-id="{{this._id}}">Order Now</button>
+      <form method="POST" action="/cart/addtocart">
+        <input type="hidden" name="product_id" value="{{this._id}}">
+        <button class="btn btn-outline-pink" data-id="{{this._id}}">Order Now</button>
+      </form>
     </div>
     {{/each}}
   </section>
