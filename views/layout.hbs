@@ -29,11 +29,11 @@
     </h1>
     <nav class="navigation">
       <ul>
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/products">Products</a></li>
-        <li><a href="/contactus">Contact Us</a></li>
-        <li><a href="/about">About Us</a></li>
-        <li><a href="/faqs">FAQs</a></li>
+        <li class="{{#if navhome }} active {{/if}}""><a href=" /">Home</a></li>
+        <li class={{#if navproducts}}active{{/if}}><a href="/products">Products</a></li>
+        <li class={{#if navcontactus}}active{{/if}}><a href="/contactus">Contact Us</a></li>
+        <li class={{#if navabout }}active{{/if}}><a href="/about">About Us</a></li>
+        <li class={{#if navfaqs}}active{{/if}}><a href="/faqs">FAQs</a></li>
       </ul>
     </nav>
     <button class="bt"><i class="material-icons">menu</i></button>

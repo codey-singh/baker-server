@@ -9,7 +9,11 @@ router.get("/", (req, res) => {
       .find({})
       .toArray()
       .then((products) => {
-        res.render("products", { title: "Our delicacies", products });
+        res.render("products", {
+          title: "Our delicacies",
+          navproducts: true,
+          products,
+        });
         client.close();
       });
   });

@@ -10,7 +10,7 @@ router.get("/", function (req, res, next) {
       .limit(3)
       .toArray()
       .then((products) => {
-        res.render("index", { title: "Express", products });
+        res.render("index", { title: "Express", navhome: true, products });
         client.close();
       });
   });
