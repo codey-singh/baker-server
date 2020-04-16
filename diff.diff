@@ -1,0 +1,112 @@
+diff --git a/public/stylesheets/style.css b/public/stylesheets/style.css
+index 2007559..34ab5f7 100644
+--- a/public/stylesheets/style.css
++++ b/public/stylesheets/style.css
+@@ -612,6 +612,17 @@ address > a {
+   right: 10px;
+ }
+ 
++th,
++td {
++  border: 1px solid #ccc;
++  padding: 10px;
++}
++
++tr:nth-child(2n) {
++  background-color: #888;
++  color: #fff;
++}
++
+ @media only screen and (min-width: 320px) {
+   .grid3 {
+     flex-direction: column;
+diff --git a/routes/cart.js b/routes/cart.js
+index 8fbe621..4b13f18 100644
+--- a/routes/cart.js
++++ b/routes/cart.js
+@@ -51,6 +51,7 @@ router.post("/buy", (req, res) => {
+     let collection = db.collection("invoices");
+     collection
+       .insertOne({
++        ...req.body,
+         products: req.session.cart,
+         grandTotal: req.session.grandTotal,
+       })
+diff --git a/views/checkout.hbs b/views/checkout.hbs
+index 73b99ba..617a9de 100644
+--- a/views/checkout.hbs
++++ b/views/checkout.hbs
+@@ -6,36 +6,45 @@
+ 
+ <main id="wrapper">
+   <div class="grid2" style="min-height: 400px">
+-    <div class="fill-available">
++    <div class="fill-available" id="contact">
+       {{#if cart}}
+-      <table class="bordered" style="text-align: center;" width=500>
+-        <tr>
+-          <th>Product</th>
+-          <th>Price</th>
+-          <th>Qty</th>
+-          <th>Sub Total</th>
+-        </tr>
+-        {{#each cart}}
+-        <tr>
+-          <td>{{this.name}}</td>
+-          <td>${{this.price}}</td>
+-          <td>{{this.qty}}</td>
+-          <td>${{this.subtot}}</td>
+-        </tr>
+-        {{/each}}
+-        <tfoot>
+-          <tr>
+-            <td colspan="4">
+-              <hr>
+-            </td>
+-          </tr>
+-          <tr>
+-            <td colspan="3">Grand Total</td>
+-            <td>${{this.grandTotal}}</td>
+-          </tr>
+-        </tfoot>
+-      </table>
+       <form action="/cart/buy" method="post" id="buy">
++        <fieldset>
++          <input placeholder="Your name" name="name" type="text" tabindex="1" required />
++        </fieldset>
++        <fieldset>
++          <input placeholder="Your Email Address" name="email" type="email" tabindex="2" required />
++        </fieldset>
++        <fieldset>
++          <input placeholder="Your Phone Number" name="phone" type="tel" tabindex="3" required />
++        </fieldset>
++        <fieldset>
++          <textarea placeholder="Special Instructions...." name="message" tabindex="5" required></textarea>
++        </fieldset>
++        <div class="centred">
++          <table class="table table-bordered table-striped" style="text-align: center; border:1px solid #ccc">
++            <tr>
++              <th>Product</th>
++              <th>Price</th>
++              <th>Qty</th>
++              <th>Sub Total</th>
++            </tr>
++            {{#each cart}}
++            <tr>
++              <td>{{this.name}}</td>
++              <td>${{this.price}}</td>
++              <td>{{this.qty}}</td>
++              <td>${{this.subtot}}</td>
++            </tr>
++            {{/each}}
++            <tfoot>
++              <tr>
++                <td colspan="3">Grand Total</td>
++                <td>${{this.grandTotal}}</td>
++              </tr>
++            </tfoot>
++          </table>
++        </div>
+         <br>
+         <button class="btn btn-outline-pink" type="submit">Pay and Proceed</button>
+       </form>

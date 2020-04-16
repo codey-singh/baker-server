@@ -51,6 +51,7 @@ router.post("/buy", (req, res) => {
     let collection = db.collection("invoices");
     collection
       .insertOne({
+        ...req.body,
         products: req.session.cart,
         grandTotal: req.session.grandTotal,
       })
